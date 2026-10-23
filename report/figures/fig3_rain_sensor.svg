@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="310" viewBox="0 0 560 310" font-family="Liberation Sans, Arial, sans-serif" font-size="12">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c2430"/>
+    </marker>
+    <style>
+      .w { stroke: #1c2430; stroke-width: 1.6; fill: none; }
+      .v { fill: #1f4e8c; font-weight: bold; }
+      .note { font-size: 11px; fill: #444; }
+      .lbl { fill: #1c2430; }
+    </style>
+  </defs>
+  <!-- rails -->
+  <path class="w" d="M70,30 H500"/>
+  <text x="285" y="20" text-anchor="middle" class="v">VCC (Arduino D4: HIGH only while reading)</text>
+  <path class="w" d="M70,270 H500"/>
+  <text x="285" y="292" text-anchor="middle" class="v">GND</text>
+
+  <!-- R1 pull-up 30..140 -->
+  <path class="w" d="M110,30 V50 l0,8 l8,4 l-16,8 l16,8 l-16,8 l16,8 l-16,8 l8,4 l0,8 V140"/>
+  <text x="124" y="84" class="lbl">R1</text>
+  <circle cx="110" cy="140" r="3.5" fill="#1c2430"/>
+  <!-- plate as variable resistor 170..230 -->
+  <path class="w" d="M110,140 V170"/>
+  <rect x="98" y="170" width="24" height="60" fill="#fff" stroke="#1c2430" stroke-width="1.6"/>
+  <path d="M84,224 L136,176" stroke="#1c2430" stroke-width="1.4" marker-end="url(#a)"/>
+  <path class="w" d="M110,230 V270"/>
+  <text x="140" y="196" class="lbl">rain plate</text>
+  <text x="140" y="212" class="note">R<tspan dy="3" font-size="8">plate</tspan><tspan dy="-3"> falls as water</tspan></text>
+  <text x="140" y="226" class="note">bridges the tracks</text>
+
+  <!-- AO terminal -->
+  <path class="w" d="M110,140 H54"/>
+  <circle cx="50" cy="140" r="4" fill="#fff" stroke="#1c2430" stroke-width="1.6"/>
+  <text x="12" y="128" class="v">AO → A1</text>
+
+  <!-- to comparator + -->
+  <path class="w" d="M110,140 H160 V175 H300"/>
+  <!-- reference -->
+  <rect x="180" y="105" width="96" height="40" rx="4" fill="#eef1f5" stroke="#1c2430" stroke-width="1.2"/>
+  <text x="228" y="122" text-anchor="middle" class="lbl" font-size="11">trimmer pot</text>
+  <text x="228" y="137" text-anchor="middle" class="lbl" font-size="11">sets V<tspan dy="3" font-size="8">ref</tspan></text>
+  <path class="w" d="M276,125 H300"/>
+  <!-- comparator -->
+  <path d="M300,100 L300,200 L390,150 Z" fill="#dbe6f5" stroke="#1f4e8c" stroke-width="1.6"/>
+  <text x="306" y="129" class="lbl" font-size="14">−</text>
+  <text x="306" y="180" class="lbl" font-size="14">+</text>
+  <text x="335" y="155" class="lbl" font-size="11">LM393</text>
+  <!-- output with pull-up -->
+  <path class="w" d="M390,150 H500"/>
+  <circle cx="450" cy="150" r="3.5" fill="#1c2430"/>
+  <path class="w" d="M450,30 V58 l0,8 l8,4 l-16,8 l16,8 l-16,8 l16,8 l-16,8 l8,4 l0,8 V150"/>
+  <text x="464" y="96" class="lbl">R2</text>
+  <circle cx="504" cy="150" r="4" fill="#fff" stroke="#1c2430" stroke-width="1.6"/>
+  <text x="470" y="172" class="v">DO → D3</text>
+
+  <!-- notes -->
+  <text x="300" y="222" class="note">Dry: R<tspan dy="3" font-size="8">plate</tspan><tspan dy="-3"> ≫ R1 → AO ≈ VCC (reading ≈ 1023)</tspan></text>
+  <text x="300" y="238" class="note">Wet: R<tspan dy="3" font-size="8">plate</tspan><tspan dy="-3"> falls → AO and the reading fall</tspan></text>
+  <text x="300" y="254" class="note">DO goes LOW when AO &lt; V<tspan dy="3" font-size="8">ref</tspan></text>
+</svg>

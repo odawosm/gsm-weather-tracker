@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="380" viewBox="0 0 800 380" font-family="Liberation Sans, Arial, sans-serif" font-size="11">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c2430"/>
+    </marker>
+    <style>
+      .ext { fill: #e8f4ea; stroke: #2e7d32; stroke-width: 1.2; }
+      .th { fill: #eef1f5; stroke: #1c2430; stroke-width: 1.2; }
+      .core { fill: #dbe6f5; stroke: #1f4e8c; stroke-width: 1.6; }
+      .db { fill: #fff8e1; stroke: #b7791f; stroke-width: 1.4; }
+      .l { stroke: #1c2430; stroke-width: 1.3; fill: none; }
+      .t { font-weight: bold; font-size: 12px; }
+      .s { fill: #444; font-size: 10.5px; }
+      .lbl { fill: #1f4e8c; font-size: 10px; }
+    </style>
+  </defs>
+  <!-- external -->
+  <rect class="ext" x="20" y="34" width="130" height="50" rx="5"/><text x="85" y="55" text-anchor="middle" class="t">Arduino</text><text x="85" y="71" text-anchor="middle" class="s">USB serial, 9600 baud</text>
+  <rect class="ext" x="20" y="114" width="130" height="50" rx="5"/><text x="85" y="135" text-anchor="middle" class="t">Open-Meteo</text><text x="85" y="151" text-anchor="middle" class="s">HTTPS, JSON</text>
+  <rect class="ext" x="20" y="194" width="130" height="50" rx="5"/><text x="85" y="215" text-anchor="middle" class="t">Android phone</text><text x="85" y="231" text-anchor="middle" class="s">SMS Gateway (backup)</text>
+
+  <!-- threads -->
+  <rect class="th" x="200" y="30" width="220" height="58" rx="5"/>
+  <text x="310" y="49" text-anchor="middle" class="t">serial thread</text>
+  <text x="310" y="64" text-anchor="middle" class="s">parse JSON lines → readings, SMS log</text>
+  <text x="310" y="78" text-anchor="middle" class="s">send forecast line every 5 min</text>
+  <rect class="th" x="200" y="110" width="220" height="58" rx="5"/>
+  <text x="310" y="129" text-anchor="middle" class="t">online thread</text>
+  <text x="310" y="144" text-anchor="middle" class="s">fetch current + 12 h forecast</text>
+  <text x="310" y="158" text-anchor="middle" class="s">every 15 min → forecasts</text>
+  <rect class="th" x="200" y="190" width="220" height="58" rx="5" stroke-dasharray="5 3"/>
+  <text x="310" y="209" text-anchor="middle" class="t">gateway thread</text>
+  <text x="310" y="224" text-anchor="middle" class="s">poll inbox every 15 s, reply,</text>
+  <text x="310" y="238" text-anchor="middle" class="s">send alerts (only when set up)</text>
+
+  <!-- database -->
+  <rect class="db" x="200" y="292" width="220" height="62" rx="8"/>
+  <text x="310" y="314" text-anchor="middle" class="t">SQLite: data.db</text>
+  <text x="310" y="330" text-anchor="middle" class="s">readings · forecasts · sms_log</text>
+  <text x="310" y="345" text-anchor="middle" class="s">(history survives restarts)</text>
+
+  <!-- flask + browser -->
+  <rect class="core" x="500" y="110" width="140" height="110" rx="6"/>
+  <text x="570" y="132" text-anchor="middle" class="t">Flask app</text>
+  <text x="570" y="152" text-anchor="middle" class="s">/api/data</text>
+  <text x="570" y="167" text-anchor="middle" class="s">/api/history</text>
+  <text x="570" y="182" text-anchor="middle" class="s">/api/accuracy</text>
+  <text x="570" y="197" text-anchor="middle" class="s">/api/gateway</text>
+  <text x="570" y="212" text-anchor="middle" class="s">rain prediction</text>
+  <rect class="ext" x="680" y="135" width="104" height="60" rx="5"/>
+  <text x="732" y="158" text-anchor="middle" class="t">Browser</text>
+  <text x="732" y="174" text-anchor="middle" class="s">localhost:5000</text>
+  <text x="732" y="188" text-anchor="middle" class="s">polls every 5 s</text>
+
+  <!-- links -->
+  <path class="l" d="M152,59 H198" marker-start="url(#a)" marker-end="url(#a)"/>
+  <path class="l" d="M152,139 H198" marker-start="url(#a)" marker-end="url(#a)"/>
+  <path class="l" d="M152,219 H198" marker-start="url(#a)" marker-end="url(#a)" stroke-dasharray="4 3"/>
+  <!-- bus to DB -->
+  <path class="l" d="M420,59 H450 V323 H422" marker-end="url(#a)"/>
+  <path class="l" d="M420,139 H450"/>
+  <path class="l" d="M420,219 H450"/>
+  <text x="456" y="275" class="lbl">writes</text>
+  <!-- DB to Flask -->
+  <path class="l" d="M420,340 H570 V222" marker-end="url(#a)"/>
+  <text x="576" y="290" class="lbl">reads</text>
+  <!-- Flask to browser -->
+  <path class="l" d="M642,165 H678" marker-start="url(#a)" marker-end="url(#a)"/>
+  <text x="660" y="158" text-anchor="middle" class="lbl">JSON</text>
+</svg>

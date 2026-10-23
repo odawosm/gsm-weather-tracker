@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather Station</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>SMS Weather Station</h1>
+    <div class="pills">
+      <span id="gw" class="pill" hidden></span>
+      <span id="conn" class="pill">Connecting…</span>
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="card">
+      <h2>Now at this location</h2>
+      <div class="stats two-by-two">
+        <div><span class="label">Temperature</span><span class="value" id="s-t">–</span></div>
+        <div><span class="label">Humidity</span><span class="value" id="s-h">–</span></div>
+        <div><span class="label">Light</span><span class="value" id="s-light">–</span></div>
+        <div><span class="label">Rain</span><span class="value" id="s-rain">–</span></div>
+      </div>
+      <p class="muted" id="s-age"></p>
+    </section>
+
+    <section class="card">
+      <h2>Online conditions and forecast</h2>
+      <div class="stats">
+        <div><span class="label">Temperature</span><span class="value" id="o-t">–</span></div>
+        <div><span class="label">Humidity</span><span class="value" id="o-h">–</span></div>
+        <div><span class="label">Precipitation</span><span class="value" id="o-p">–</span></div>
+      </div>
+      <table>
+        <thead><tr><th>Time</th><th>Temp</th><th>Hum</th><th>Rain chance</th><th>Rain</th></tr></thead>
+        <tbody id="o-hourly"></tbody>
+      </table>
+      <p class="muted" id="o-age"></p>
+    </section>
+
+    <section class="card">
+      <h2>Comparison</h2>
+      <table>
+        <thead><tr><th></th><th>Sensor</th><th>Online</th><th>Difference</th></tr></thead>
+        <tbody>
+          <tr><th>Temperature</th><td id="c-ts">–</td><td id="c-to">–</td><td id="c-td">–</td></tr>
+          <tr><th>Humidity</th><td id="c-hs">–</td><td id="c-ho">–</td><td id="c-hd">–</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>Rain prediction</h2>
+      <p id="rain-level" class="level">–</p>
+      <ul id="rain-reasons"></ul>
+    </section>
+
+    <section class="card">
+      <h2>SMS phone</h2>
+      <div class="stats">
+        <div class="full"><span class="label">Connection</span><span class="value" id="p-conn">–</span></div>
+      </div>
+      <form id="gw-form" class="form">
+        <label>Phone address <input name="url" placeholder="192.168.1.50:8080" autocomplete="off"></label>
+        <label>Username <input name="user" placeholder="sms" autocomplete="off"></label>
+        <label>Password <input name="password" type="password" autocomplete="new-password"></label>
+        <label>Approved numbers <input name="authorized" placeholder="0712345678, 0798765432" autocomplete="off"></label>
+        <button>Save</button>
+      </form>
+      <p class="muted" id="gw-msg">From the SMS Gateway app (Local Server). Leave the password blank to keep it; clear the address to switch the backup off.</p>
+    </section>
+
+    <section class="card wide">
+      <h2>Last 24 hours</h2>
+      <div class="chart"><canvas id="chart"></canvas></div>
+    </section>
+
+    <section class="card">
+      <h2>Forecast accuracy</h2>
+      <table>
+        <thead><tr><th></th><th>Hours</th><th>Temp MAE</th><th>Hum MAE</th><th>Rain match</th></tr></thead>
+        <tbody id="acc"></tbody>
+      </table>
+      <p class="muted">Sensor hourly average vs the Open-Meteo forecast fetched at least 1 h earlier.</p>
+    </section>
+
+    <section class="card">
+      <h2>SMS log</h2>
+      <table>
+        <thead><tr><th>Time</th><th>Direction</th><th>Number</th><th>Text</th></tr></thead>
+        <tbody id="sms"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="440" viewBox="0 0 680 440" font-family="Liberation Sans, Arial, sans-serif" font-size="11">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c2430"/>
+    </marker>
+    <style>
+      .hd { fill: #dbe6f5; stroke: #1f4e8c; stroke-width: 1.4; }
+      .ll { stroke: #8a94a3; stroke-width: 1; stroke-dasharray: 4 4; }
+      .m { stroke: #1c2430; stroke-width: 1.3; fill: none; }
+      .r { stroke: #1c2430; stroke-width: 1.3; fill: none; stroke-dasharray: 5 3; }
+      .t { font-weight: bold; font-size: 12px; }
+      .c { font-family: "DejaVu Sans Mono", monospace; font-size: 10px; }
+    </style>
+  </defs>
+  <!-- headers -->
+  <rect class="hd" x="20" y="16" width="120" height="34" rx="4"/><text x="80" y="38" text-anchor="middle" class="t">User's phone</text>
+  <rect class="hd" x="190" y="16" width="120" height="34" rx="4"/><text x="250" y="38" text-anchor="middle" class="t">Network / SMSC</text>
+  <rect class="hd" x="360" y="16" width="120" height="34" rx="4"/><text x="420" y="38" text-anchor="middle" class="t">SIM800L</text>
+  <rect class="hd" x="530" y="16" width="120" height="34" rx="4"/><text x="590" y="38" text-anchor="middle" class="t">Arduino</text>
+  <!-- lifelines -->
+  <path class="ll" d="M80,50 V430 M250,50 V430 M420,50 V430 M590,50 V430"/>
+
+  <path class="m" d="M80,80 H248" marker-end="url(#a)"/><text x="164" y="74" text-anchor="middle">SMS "WEATHER"</text>
+  <path class="m" d="M250,112 H418" marker-end="url(#a)"/><text x="334" y="106" text-anchor="middle">deliver (store-and-forward)</text>
+  <path class="m" d="M420,148 H588" marker-end="url(#a)"/>
+  <text x="504" y="134" text-anchor="middle" class="c">+CMT: "+2547…",,"date"</text>
+  <text x="504" y="162" text-anchor="middle" class="c">WEATHER</text>
+
+  <rect x="514" y="176" width="152" height="40" rx="4" fill="#fff8e1" stroke="#b7791f"/>
+  <text x="590" y="192" text-anchor="middle">sender in AUTHORIZED?</text>
+  <text x="590" y="207" text-anchor="middle">build report (≤160 chars)</text>
+
+  <path class="m" d="M588,240 H422" marker-end="url(#a)"/><text x="504" y="234" text-anchor="middle" class="c">AT+CMGS="+2547…"</text>
+  <path class="r" d="M420,272 H588" marker-end="url(#a)"/><text x="504" y="266" text-anchor="middle" class="c">"&gt; " prompt</text>
+  <path class="m" d="M588,304 H422" marker-end="url(#a)"/><text x="504" y="298" text-anchor="middle">report text + Ctrl+Z (0x1A)</text>
+  <path class="m" d="M418,336 H252" marker-end="url(#a)"/><text x="334" y="330" text-anchor="middle">submit SMS</text>
+  <path class="m" d="M248,368 H82" marker-end="url(#a)"/><text x="164" y="362" text-anchor="middle">reply "Weather 14/10 12:30: …"</text>
+  <path class="r" d="M420,400 H588" marker-end="url(#a)"/><text x="504" y="394" text-anchor="middle" class="c">+CMGS: &lt;ref&gt;  OK</text>
+</svg>

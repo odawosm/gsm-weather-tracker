@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="580" height="320" viewBox="0 0 580 320" font-family="Liberation Sans, Arial, sans-serif" font-size="12">
+  <defs>
+    <style>
+      .w { stroke: #1c2430; stroke-width: 1.6; fill: none; }
+      .v { fill: #1f4e8c; font-weight: bold; }
+      .note { font-size: 11px; fill: #333; }
+      .lbl { fill: #1c2430; }
+    </style>
+  </defs>
+  <!-- rails -->
+  <path class="w" d="M40,40 H300"/>
+  <text x="40" y="28" class="v">LV rail (Arduino 3.3V pin)</text>
+  <path class="w" d="M360,40 H540"/>
+  <text x="540" y="28" text-anchor="end" class="v">HV rail (Arduino 5V)</text>
+
+  <!-- gate from LV rail -->
+  <path class="w" d="M285,40 V120"/>
+  <!-- MOSFET box -->
+  <rect x="240" y="120" width="90" height="50" rx="4" fill="#dbe6f5" stroke="#1f4e8c" stroke-width="1.6"/>
+  <text x="285" y="142" text-anchor="middle" class="lbl" font-weight="bold">BSS138</text>
+  <text x="285" y="158" text-anchor="middle" class="lbl" font-size="10">N-MOSFET</text>
+  <text x="290" y="114" class="lbl" font-size="10">G</text>
+  <text x="228" y="140" class="lbl" font-size="10">S</text>
+  <text x="335" y="140" class="lbl" font-size="10">D</text>
+
+  <!-- LV pull-up -->
+  <path class="w" d="M120,40 V60 l0,8 l8,4 l-16,8 l16,8 l-16,8 l16,8 l-16,8 l8,4 l0,8 V145"/>
+  <text x="134" y="96" class="lbl">10 kΩ</text>
+  <circle cx="120" cy="145" r="3.5" fill="#1c2430"/>
+  <path class="w" d="M44,145 H240"/>
+  <circle cx="40" cy="145" r="4" fill="#fff" stroke="#1c2430" stroke-width="1.6"/>
+  <text x="20" y="172" class="v">LV1 / LV2</text>
+  <text x="20" y="188" class="note">to SIM800L RXD / TXD</text>
+
+  <!-- HV pull-up -->
+  <path class="w" d="M450,40 V60 l0,8 l8,4 l-16,8 l16,8 l-16,8 l16,8 l-16,8 l8,4 l0,8 V145"/>
+  <text x="464" y="96" class="lbl">10 kΩ</text>
+  <circle cx="450" cy="145" r="3.5" fill="#1c2430"/>
+  <path class="w" d="M330,145 H536"/>
+  <circle cx="540" cy="145" r="4" fill="#fff" stroke="#1c2430" stroke-width="1.6"/>
+  <text x="560" y="172" text-anchor="end" class="v">HV1 / HV2</text>
+  <text x="560" y="188" text-anchor="end" class="note">to Arduino D8 / D7</text>
+
+  <!-- operation -->
+  <text x="20" y="226" class="note"><tspan font-weight="bold">Both sides high:</tspan> V<tspan dy="3" font-size="8">GS</tspan><tspan dy="-3"> ≈ 0, MOSFET off; each side is pulled up to its own rail.</tspan></text>
+  <text x="20" y="248" class="note"><tspan font-weight="bold">Low-voltage side pulls low:</tspan> V<tspan dy="3" font-size="8">GS</tspan><tspan dy="-3"> = 3.3 V, MOSFET on, so the 5 V side is pulled low too.</tspan></text>
+  <text x="20" y="270" class="note"><tspan font-weight="bold">5 V side pulls low:</tspan> the body diode pulls the source low, V<tspan dy="3" font-size="8">GS</tspan><tspan dy="-3"> rises, MOSFET on,</tspan></text>
+  <text x="20" y="286" class="note">so the low-voltage side follows. The circuit works in both directions with no direction pin.</text>
+</svg>

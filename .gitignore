@@ -1,0 +1,4 @@
+dashboard/.venv/
+dashboard/gateway.json
+dashboard/data.db
+__pycache__/
